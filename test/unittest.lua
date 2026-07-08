@@ -44,7 +44,8 @@ local function run_unittest()
 	assert(get_skin("player_Com_Pat_42") == "player._Com_Pat_42")
 	assert(get_skin("player_Com_Pat_42_1") == "player._Com_Pat_42.1")
 
-	core.log("error", "Unittest passed! Please disable them now.")
+	-- core.log("error", "Unittest passed! Please disable them now.")
+	core.request_shutdown()
 end
 
 run_unittest()
