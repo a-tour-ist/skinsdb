@@ -131,5 +131,6 @@ core.register_allow_player_inventory_action(function(player, action, inv, data)
 	end
 end)
 
---dofile(skins.modpath.."/unittest.lua")
-
+if core.settings:get_bool("skinsdb.run_unittests", false) then
+	dofile(skins.modpath.."/unittest.lua")
+end
