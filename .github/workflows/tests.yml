@@ -1,0 +1,23 @@
+on: [push, pull_request]
+name: unittests
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    container: 
+      image: 'ghcr.io/luanti-org/luanti:latest'
+      options: --user root
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: 'luanti-org/minetest_game'
+        path: testworld/game
+
+    - uses: actions/checkout@v4
+      with:
+        path: testworld/game/mods/skinsdb
+
+    - run: |
+        echo 'skinsdb.run_unittests=true' > minetest.conf
+        echo 'gameid=""' > testworld/world.mt
+
+    - run: luantiserver --world $PWD/testworld --config minetest.conf
